@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const bcryptjs = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const jwt=require('jsonwebtoken')
 exports.userSignUp = (req, res) => {
   let data = req.body;
   bcryptjs.hash(data.password, 10, function (err, hash) {
@@ -57,3 +58,25 @@ const sendEmail = (email) => {
       }
     });
 };
+exports.userLogin=(res,req)=>{
+    console.log(req.body)
+   
+    // User.findOne({
+    //     email:email
+    // })
+    // .then((resp)=>{
+    //     if(resp===null){
+    //         return res.status(401).json({message:"Authentication fail"})
+    //      }
+    //      bcryptjs.compare(req.body.password,resp.password,function(err,cresult){
+    //          if(cresult===false){
+    //            return  res.status(401).json({message:" unAuthorized user"})
+    //          }
+    //         const token= jwt.sign({uid:resp._id},'secretkey');
+    //         res.status(200).json({success:true,token:token,message:"login Successful"})
+    //      })
+    // })
+    // .catch((err)=>{
+    //     return res.status(404).json({message:"Authentication fail",success:false})
+    // })
+}

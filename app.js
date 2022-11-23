@@ -1,11 +1,12 @@
 const express =require('express')
 require('./database/db.js')
 const userRouter=require('./routers/userRouter')
-const app = express()
 const PORT=90||process.env.PORT
-app.use(express.json())
+const app = express()
 
-app.use(userRouter)
+// app.use(express.urlencoded())
+app.use(express.json())
+app.use('/api/v1',userRouter)
 app.listen(PORT,()=>{
     console.log(`app is listening at port:${PORT}`)
 })
